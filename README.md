@@ -40,6 +40,8 @@ new TarSync("./test-folder").stop() // Call stop when you want to stop sync chan
 
 ```
 
+a tar file ./test-folder.tar should be generated.
+
 Using with options:
 
 ```ts

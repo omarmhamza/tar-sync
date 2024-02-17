@@ -35,8 +35,10 @@
   "keywords": [
     "tar",
     "sync",
-    "dir",
-    "watch"
+    "directory",
+    "watch",
+    "file",
+    "fs"
   ]
 
 }
