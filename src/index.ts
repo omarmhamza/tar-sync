@@ -18,7 +18,7 @@ export class TarSync {
     private static readonly pending: Map<string, void> = new Map()
 
 
-    private fsWatcher: FSWatcher;
+    private fsWatcher: FSWatcher | undefined;
 
     /** 
      * The file system watcher instance.
@@ -160,7 +160,8 @@ export class TarSync {
                         ...defaultOptions, ...options?.watcherOpts
                     })
                     tiggerOnEvents.forEach(event => {
-                        this.fsWatcher.on(event, async () => {
+                        this.fsWatcher?.on(event, async (path) => {
+                            this.logVerbose(`Event trigger: ${event} | ${path}`)
                             try{
                                 await archiveDir()
                             }catch(err){}
@@ -175,6 +176,9 @@ export class TarSync {
 
         this.stopWatching = () => {
             return new Promise((resolve, reject) => {
+                if(!this.fsWatcher){
+                    return resolve()
+                }
                 this.fsWatcher.close().then(() => {
                     TarSync.locks.delete(path)
                     TarSync.pending.delete(path)

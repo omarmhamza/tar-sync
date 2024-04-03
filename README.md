@@ -12,6 +12,11 @@ The motivation behind developing tar-sync stemmed from the need for a reliable s
 - Automatically creates tar archives from directory changes
 - Robust: Capable of handling concurrent changes without corrupting data
 
+## Use Cases
+- Backup Solution: Automatically create tar archives of critical data for regular backups.
+- Versioning and History: Maintain a history of changes made to a directory by creating tar archives.
+- Sharing and Distribution: Easily share snapshots of directories by packaging them into tar archives.
+
 
 ##  Example
 

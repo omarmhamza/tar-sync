@@ -16,7 +16,7 @@ export declare class TarSync {
     /**
      * The file system watcher instance.
      */
-    get watcher(): FSWatcher;
+    get watcher(): FSWatcher | undefined;
     private readonly startWatching;
     private readonly stopWatching;
     private readonly verbose;

@@ -124,7 +124,9 @@ class TarSync {
                         ...defaultOptions, ...options === null || options === void 0 ? void 0 : options.watcherOpts
                     });
                     tiggerOnEvents.forEach(event => {
-                        this.fsWatcher.on(event, async () => {
+                        var _a;
+                        (_a = this.fsWatcher) === null || _a === void 0 ? void 0 : _a.on(event, async (path) => {
+                            this.logVerbose(`Event trigger: ${event} | ${path}`);
                             try {
                                 await archiveDir();
                             }
@@ -140,6 +142,9 @@ class TarSync {
         };
         this.stopWatching = () => {
             return new Promise((resolve, reject) => {
+                if (!this.fsWatcher) {
+                    return resolve();
+                }
                 this.fsWatcher.close().then(() => {
                     TarSync.locks.delete(path);
                     TarSync.pending.delete(path);
